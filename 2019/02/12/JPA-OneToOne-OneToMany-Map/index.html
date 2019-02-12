@@ -282,7 +282,8 @@
 
     <!-- Custom Head -->
     
-</head>
+<link rel="stylesheet" href="/css/prism-xonokai.css" type="text/css">
+<link rel="stylesheet" href="/css/prism-line-numbers.css" type="text/css"></head>
 
 
     
@@ -486,22 +487,39 @@
 <p><img src="\images\20190212table1.png" alt=""></p>
 <p>这种情况下程序中的数据对象应该是这样的</p>
 <blockquote>
-<p>Head.java<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Id</span></span><br><span class="line"><span class="keyword">private</span> Integer id;</span><br><span class="line"><span class="keyword">private</span> String name;</span><br><span class="line"><span class="meta">@OneToOne</span></span><br><span class="line"><span class="meta">@JoinColumn</span>(name = <span class="string">"detail_id"</span>, referencedColumnName = <span class="string">"id"</span>)</span><br><span class="line"><span class="keyword">private</span> Detail detail;</span><br><span class="line">......</span><br><span class="line">getter,setter</span><br><span class="line">......</span><br></pre></td></tr></table></figure></p>
+<p>Head.java<br><code>`</code>java<br>@Id<br>private Integer id;<br>private String name;<br>@OneToOne<br>@JoinColumn(name = “detail_id”, referencedColumnName = “id”)<br>private Detail detail;<br>……<br>getter,setter<br>……</p>
 </blockquote>
-<hr>
-<p>detail.java<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Id</span></span><br><span class="line"><span class="keyword">private</span> Integer id;</span><br><span class="line"><span class="keyword">private</span> String name;</span><br><span class="line">......</span><br><span class="line">getter,setter</span><br><span class="line">......</span><br></pre></td></tr></table></figure></p>
-<p>上面这种一般没什么问题，然后看下面这个</p>
+<pre><code>---
+detail.java 
+```java
+@Id
+private Integer id;
+private String name;
+......
+getter,setter
+......
+</code></pre><p>上面这种一般没什么问题，然后看下面这个</p>
 <ul>
 <li>明细表存头表主键</li>
 </ul>
 <p><img src="\images\20190212table2.png" alt=""></p>
 <p>双向映射的数据对象</p>
 <blockquote>
-<p>Head.java<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Id</span></span><br><span class="line"><span class="keyword">private</span> Integer id;</span><br><span class="line"><span class="keyword">private</span> String name;</span><br><span class="line"><span class="meta">@OneToOne</span>(mappedBy = <span class="string">"head"</span>)</span><br><span class="line"><span class="keyword">private</span> Detail detail;</span><br><span class="line">......</span><br><span class="line">getter,setter</span><br><span class="line">......</span><br></pre></td></tr></table></figure></p>
+<p>Head.java<br><code>`</code>java<br>@Id<br>private Integer id;<br>private String name;<br>@OneToOne(mappedBy = “head”)<br>private Detail detail;<br>……<br>getter,setter<br>……</p>
 </blockquote>
-<hr>
-<p>detail.java<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Id</span></span><br><span class="line"><span class="keyword">private</span> Integer id;</span><br><span class="line"><span class="keyword">private</span> String name;</span><br><span class="line"><span class="meta">@OneToOne</span></span><br><span class="line"><span class="meta">@JoinColumn</span>(name = <span class="string">"pid"</span>, referencedColumnName = <span class="string">"id"</span>)</span><br><span class="line"><span class="keyword">private</span> Head head;</span><br><span class="line">......</span><br><span class="line">getter,setter</span><br><span class="line">......</span><br></pre></td></tr></table></figure></p>
-
+<pre><code>---
+detail.java
+```java
+@Id
+private Integer id;
+private String name;
+@OneToOne
+@JoinColumn(name = &quot;pid&quot;, referencedColumnName = &quot;id&quot;)
+private Head head;
+......
+getter,setter
+......
+</code></pre>
     
 
     
